@@ -8,7 +8,10 @@ A platform which allows the clients to share their life with their contacts on a
 
 # APIs
 These are the APIs we used:
-**API Number 1**
+
+- **API Number 1**
+
+#Guide for formatting
 
 **This is bold text**
 *This text is italicized*
