@@ -11,7 +11,7 @@ These are the APIs we used:
 
 - **API Number 1**
 
-#Guide for formatting
+# Guide for formatting
 
 **This is bold text**
 *This text is italicized*
