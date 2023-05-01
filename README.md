@@ -1,5 +1,15 @@
-# group11-tawk17-project2023
-# A first-level heading
+# Group 11 - Close Social (name of the app idk)
+# Purpose
+A platform which allows the clients to share their life with their contacts on a daily basis, which includes music sharing, lifestyle sharing, text sharing and real time location sharing if they want to.
+
+# User Account Levels
+- Admin - Moderating Clients and their posts
+- Client - Creating and viewing posts of theirs and other's
+
+# APIs
+These are the APIs we used:
+**API Number 1**
+
 **This is bold text**
 *This text is italicized*
 ~~This was mistaken text~~
