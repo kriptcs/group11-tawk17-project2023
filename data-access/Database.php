@@ -29,11 +29,11 @@ class Database
 
     // Retrieves all rows from the specified 
     // table in the database and returns the result.
-    protected function getAllRowsFromTable($apps)
+    protected function getAllRowsFromTable($posts)
     {
         // Variables inside the query are OK when the variables are not user input.
         // Never use variables directly in queries when the variables value is user input.
-        $query = "SELECT * FROM {$apps}";
+        $query = "SELECT * FROM {$posts}";
 
         $stmt = $this->conn->prepare($query);
 

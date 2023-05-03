@@ -8,7 +8,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 require_once __DIR__ . "/RestAPI.php";
 require_once __DIR__ . "/../business-logic/PostsService.php";
 
-// Class for handling requests to "api/app"
+// Class for handling requests to "api/post"
 
 class PostsAPI extends RestAPI
 {
@@ -19,23 +19,23 @@ class PostsAPI extends RestAPI
 
         
         // If theres two parts in the path and the request method is GET 
-        // it means that the client is requesting "api/apps" and
-        // we should respond by returning a list of all apps 
+        // it means that the client is requesting "api/posts" and
+        // we should respond by returning a list of all posts 
         if ($this->method == "GET" && $this->path_count == 2) {
             $this->getAll();
         } 
 
         // If there's three parts in the path and the request method is GET
-        // it means that the client is requesting "api/apps/{something}".
+        // it means that the client is requesting "api/posts/{something}".
         // In our API the last part ({something}) should contain the ID of an 
-        // app and we should respond with the app of that ID
+        // post and we should respond with the post of that ID
         else if ($this->path_count == 3 && $this->method == "GET") {
             $this->getById($this->path_parts[2]);
         }
 
         // If theres two parts in the path and the request method is POST 
-        // it means that the client is requesting "api/apps" and we
-        // should get ths contents of the body and create a app.
+        // it means that the client is requesting "api/posts" and we
+        // should get ths contents of the body and create a post.
         else if ($this->path_count == 2 && $this->method == "POST") {
             $this->postOne();
         } 
@@ -56,7 +56,7 @@ class PostsAPI extends RestAPI
         }
     }
 
-    // Gets all apps and sends them to the client as JSON
+    // Gets all posts and sends them to the client as JSON
     private function getAll()
     {
         $posts = PostsService::getAllPosts();
@@ -76,7 +76,7 @@ class PostsAPI extends RestAPI
         }
     }
 
-    // Gets the contents of the body and saves it as an app by 
+    // Gets the contents of the body and saves it as an post by 
     // inserting it in the database.
     private function postOne()
     {
