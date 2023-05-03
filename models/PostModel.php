@@ -5,11 +5,10 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
     die('This file cannot be accessed directly.');
 }
 
-// Model class for users table in database
+// Model class for apps table in database
 
-class UserModel{
+class PostModel{
+    public $post_id;
     public $user_id;
-    public $username;
-    public $passwordd;    
-
+    public $content;
 }

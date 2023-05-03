@@ -5,7 +5,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
     die('This file cannot be accessed directly.');
 }
 
-require_once __DIR__ . "/AppsAPI.php";
+require_once __DIR__ . "/PostsAPI.php";
 require_once __DIR__ . "/UsersAPI.php";
 
 // Class for routing all our API requests
@@ -20,9 +20,9 @@ class APIRouter{
         // Available routes
         // Add to this if you need to add any route to the API
         $this->routes = [
-            // Whenever someone calls "api/Apps" we 
-            // will load the AppsAPI class
-            "apps" => "AppsAPI",
+            // Whenever someone calls "api/Posts" we 
+            // will load the PostsAPI class
+            "posts" => "PostsAPI",
             "users" => "UsersAPI"
         ];
 
@@ -32,10 +32,10 @@ class APIRouter{
 
     public function handleRequest(){
 
-        // Get the requested resource from the URL such as "Apps" or "Products"
+        // Get the requested resource from the URL such as "Posts" or "Products"
         $resource = strtolower($this->path_parts[1]);
 
-        // Cet the class specified in the routes
+        // Get the class specified in the routes
         $route_class = $this->routes[$resource];
 
         // Create a new object from the resource class

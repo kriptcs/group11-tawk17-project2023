@@ -6,11 +6,11 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 }
 
 require_once __DIR__ . "/RestAPI.php";
-require_once __DIR__ . "/../business-logic/AppsService.php";
+require_once __DIR__ . "/../business-logic/PostsService.php";
 
 // Class for handling requests to "api/app"
 
-class AppsAPI extends RestAPI
+class PostsAPI extends RestAPI
 {
 
     // Handles the request by calling the appropriate member function
@@ -59,18 +59,18 @@ class AppsAPI extends RestAPI
     // Gets all apps and sends them to the client as JSON
     private function getAll()
     {
-        $apps = AppsService::getAllApps();
+        $posts = PostsService::getAllPosts();
 
-        $this->sendJson($apps);
+        $this->sendJson($posts);
     }
 
     // Gets one and sends it to the client as JSON
     private function getById($id)
     {
-        $app = AppsService::getAppById($id);
+        $post = PostsService::getPostById($id);
 
-        if ($app) {
-            $this->sendJson($app);
+        if ($post) {
+            $this->sendJson($post);
         } else {
             $this->notFound();
         }
@@ -80,13 +80,11 @@ class AppsAPI extends RestAPI
     // inserting it in the database.
     private function postOne()
     {
-        $app = new AppModel();
+        $post = new PostModel();
 
-        $app->app_name = $this->body["app_name"];
-        $app->description = $this->body["description"];
-        $app->price = $this->body["price"];
-
-        $success = AppsService::saveApp($app);
+        $post->user_id = $this->body["user_id"];
+        $post->content = $this->body["content"];
+        $success = PostsService::savePost($post);
 
         if($success){
             $this->created();
@@ -98,13 +96,12 @@ class AppsAPI extends RestAPI
 
     private function modifyByID($id) {
 
-        $app = new AppModel();
+        $post = new PostModel();
 
-        $app->app_name = $this->body["app_name"];
-        $app->description = $this->body["description"];
-        $app->price = $this->body["price"];
+        $post->user_id = $this->body["user_id"];
+        $post->content = $this->body["content"];
 
-        $success = AppsService::modifyApp($id, $app);
+        $success = PostsService::modifyPost($id, $post);
           if($success){
             $this->modify();
         }
@@ -115,9 +112,9 @@ class AppsAPI extends RestAPI
 
     private function deleteByID($id) {
         
-         $app = AppsService::deleteByID($id);
+         $post = PostsService::deleteByID($id);
 
-        if ($app) {
+        if ($post) {
             $this->delete();
         } else {
             $this->notFound();

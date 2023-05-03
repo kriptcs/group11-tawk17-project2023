@@ -9,7 +9,7 @@ require_once __DIR__ . "/../data-access/UsersDatabase.php";
 
 class UsersService{
 
-    // Get one user by creating a database object 
+    // GET ONE USER by creating a database object 
     // from data-access layer and calling its getOne function.
     public static function getUserById($id){
         $users_database = new UsersDatabase();
@@ -25,7 +25,7 @@ class UsersService{
         return $user;
     }
 
-    // Get all users by creating a database object 
+    // GET ALL USERS by creating a database object 
     // from data-access layer and calling its getAll function.
     public static function getAllUsers(){
         $users_database = new UsersDatabase();
@@ -41,7 +41,7 @@ class UsersService{
         return $users;
     }
 
-    // Save a user to the database by creating a database object 
+    // POST A USER to the database by creating a database object 
     // from data-access layer and calling its insert function.
     public static function saveUser(UserModel $users){
         $users_database = new UsersDatabase();
@@ -56,6 +56,7 @@ class UsersService{
         return $success;
     }
 
+    //PUT/PATCH A USER
         public static function modifyUser($id, $user)
         {$users_database = new UsersDatabase();
             

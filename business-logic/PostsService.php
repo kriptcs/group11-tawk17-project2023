@@ -5,16 +5,16 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
     die('This file cannot be accessed directly.');
 }
 
-require_once __DIR__ . "/../data-access/AppsDatabase.php";
+require_once __DIR__ . "/../data-access/PostsDatabase.php";
 
-class AppsService{
+class PostsService{
 
-    // Get one app by creating a database object 
+    // Get one post by creating a database object 
     // from data-access layer and calling its getOne function.
-    public static function getAppById($id){
-        $apps_database = new AppsDatabase();
+    public static function getPostById($id){
+        $posts_database = new PostsDatabase();
 
-        $app = $apps_database->getOne($id);
+        $post = $posts_database->getOne($id);
 
         // If you need to remove or hide data that shouldn't
         // be shown in the API response you can do that here
@@ -22,15 +22,15 @@ class AppsService{
         // or other secret/sensitive data that shouldn't be 
         // exposed to users calling the API
 
-        return $app;
+        return $post;
     }
 
-    // Get all apps by creating a database object 
+    // Get all posts by creating a database object 
     // from data-access layer and calling its getAll function.
-    public static function getAllApps(){
-        $apps_database = new AppsDatabase();
+    public static function getAllPosts(){
+        $posts_database = new PostsDatabase();
 
-        $apps = $apps_database->getAll();
+        $posts = $posts_database->getAll();
 
         // If you need to remove or hide data that shouldn't
         // be shown in the API response you can do that here
@@ -38,36 +38,36 @@ class AppsService{
         // or other secret/sensitive data that shouldn't be 
         // exposed to users calling the API
 
-        return $apps;
+        return $posts;
     }
 
-    // Save an app to the database by creating a database object 
+    // Save an post to the database by creating a database object 
     // from data-access layer and calling its insert function.
-    public static function saveApp(AppModel $apps){
-        $apps_database = new AppsDatabase();
+    public static function savePost(PostModel $posts){
+        $posts_database = new PostsDatabase();
 
         // If you need to validate data or control what 
         // gets saved to the database you can do that here.
         // This makes sure all input from any presentation
         // layer will be validated and handled the same way.
 
-        $success = $apps_database->insert($apps);
+        $success = $posts_database->insert($posts);
 
         return $success;
     }
 
-    public static function modifyApp($id, $app)
-        {$apps_database = new AppsDatabase();
+    public static function modifyPost($id, $post)
+        {$posts_database = new PostsDatabase();
             
-        $success = $apps_database->modifyApp($id, $app);
+        $success = $posts_database->modifyPost($id, $post);
 
         return $success;
         }
 
         public static function deleteByID($id)
-        {$apps_database = new AppsDatabase();
+        {$posts_database = new PostsDatabase();
             
-        $success = $apps_database->deleteByID($id);
+        $success = $posts_database->deleteByID($id);
 
         return $success;
         }
