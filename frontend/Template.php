@@ -27,8 +27,8 @@ class Template
             </header>
 
             <nav>
-                <a href="<?= $home_path ?>">Button 1</a>
-                <a href="<?= $home_path ?>/articles">Button 2</a>
+                <a href="<?= $home_path ?>">Button 1 for home</a>
+                <a href="<?= $home_path ?>/articles">Button 2 for articles</a>
 
                 <?php if ($user) : ?>
                     <a href="<?= $home_path ?>/auth/profile">Profile</a>
