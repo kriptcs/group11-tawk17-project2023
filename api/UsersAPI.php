@@ -16,7 +16,6 @@ class UsersAPI extends RestAPI
     // Handles the request by calling the appropriate member function
     public function handleRequest()
     {
-
         
         // If theres two parts in the path and the request method is GET 
         // it means that the client is requesting "api/Users" and
