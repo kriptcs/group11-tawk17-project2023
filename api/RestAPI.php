@@ -67,9 +67,50 @@ class RestAPI
         $this->sendJson("deleted", 201);
     }
 
+
+      // Preset response for OK-response (200)
+    protected function ok(){
+        $this->sendJson("OK");
+    }
+
+    // Preset response for no content (204)
+    protected function noContent(){
+        $this->sendJson("", 204);
+    }
+
+
+
+    // Preset response for general invalid request
+    protected function invalidRequest(){
+        $this->sendJson("Invalid request", 400);
+    }
+
+    // Preset response for unauthorized
+    protected function unauthorized(){
+        $this->sendJson("Unauthorized", 401);
+    }
+
+    // Preset response for unauthorized
+    protected function forbidden(){
+        $this->sendJson("Forbidden", 403);
+    }
+
     // Preset response for general server error
     protected function error(){
         $this->sendJson("Error", 500);
+    }
+
+    // $this->requireAuth(); <-- Any user will get access
+    // $this->requireAuth(["admin"]); <-- Only admins get access
+    protected function requireAuth($authorized_roles = []){
+
+        if($this->user === false){
+            $this->unauthorized();
+        }
+
+        if(count($authorized_roles) > 0 && in_array($this->user->user_role, $authorized_roles) === false){
+            $this->forbidden();
+        }
     }
 
 
@@ -80,6 +121,7 @@ class RestAPI
         $input = file_get_contents("php://input");
 
         if(strlen($input) > 0){
+
             $this->body = json_decode($input, true);
         }
         

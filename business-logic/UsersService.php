@@ -25,6 +25,15 @@ class UsersService{
         return $user;
     }
 
+        public static function getUserByUsername($username)
+    {
+        $users_database = new UsersDatabase();
+
+        $user = $users_database->getByUsername($username);
+
+        return $user;
+    }
+
     // GET ALL USERS by creating a database object 
     // from data-access layer and calling its getAll function.
     public static function getAllUsers(){
@@ -71,5 +80,13 @@ class UsersService{
         $success = $users_database->deleteByID($id);
 
         return $success;
+        }
+
+        public static function updateUser($user_id, UserModel $user)
+        {
+            $users_database = new UsersDatabase();
+            $success = $users_database->updateById($user_id, $user);
+
+            return $success;
         }
 }

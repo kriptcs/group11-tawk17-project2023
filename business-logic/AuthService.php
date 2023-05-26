@@ -28,7 +28,7 @@ class AuthService
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         // Set the password hash in the user object
-        $user->passwordd = $password_hash;
+        $user->password_hash = $password_hash;
 
         // Insert the user into the database
         $success = $users_database->insert($user);
