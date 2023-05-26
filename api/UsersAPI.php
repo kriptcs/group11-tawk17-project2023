@@ -81,7 +81,7 @@ class UsersAPI extends RestAPI
         $user = new UserModel();
 
         $user->username = $this->body["username"];
-        $user->passwordd = $this->body["passwordd"];
+        $user->password_hash = $this->body["password_hash"];
         $success = UsersService::saveUser($user);
 
         if($success){
@@ -97,7 +97,7 @@ class UsersAPI extends RestAPI
         $user = new UserModel();
 
         $user->username = $this->body["username"];
-        $user->passwordd = $this->body["passwordd"];
+        $user->password_hash = $this->body["password_hash"];
 
         $success = UsersService::modifyUser($id, $user);
           if($success){

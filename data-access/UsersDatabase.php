@@ -63,7 +63,7 @@ private $id_name="user_id";
         // Update one by creating a query and using the inherited $this->conn 
     public function updatePasswordById($user_id, $password_hash)
     {
-        $query = "UPDATE users SET password_hash=? WHERE user_id=?;";
+        $query = "UPDATE users SET password_hash=? WHERE user_id=?";
 
         $stmt = $this->conn->prepare($query);
 
@@ -103,7 +103,7 @@ private $id_name="user_id";
 
     // Create one by creating a query and using the inherited $this->conn 
     public function insert(UserModel $user){
-        $query = "INSERT INTO users (username, passwordd) VALUES (?, ?)";
+        $query = "INSERT INTO users (username, password_hash) VALUES (?, ?)";
 
         $stmt = $this->conn->prepare($query);
 
@@ -117,11 +117,11 @@ private $id_name="user_id";
         // modify the user with the matching user id
     public function modifyUser($user_id, $user)
     {
-        $query = "UPDATE users  SET username= ?, passwordd=? WHERE user_id = ?;";
+        $query = "UPDATE users  SET username= ?, password_hash=?, user_role=? WHERE user_id = ?;";
 
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bind_param("ssi", $user->username, $user->passwordd, $user_id);
+        $stmt->bind_param("ssis", $user->username, $user->password_hash, $user_id, $user->user_role);
 
         $success = $stmt->execute();
 
