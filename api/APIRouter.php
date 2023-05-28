@@ -41,7 +41,7 @@ class APIRouter{
 
         // URL/api OR URL/api/12334
         if (count($this->path_parts) >= 2 && $this->path_parts[1] != "") {
-            // Get the requested resource from the URL such as "Purchases" or "Users"
+            // Get the requested resource from the URL such as "Posts" or "Users"
             $resource = strtolower($this->path_parts[1]);
         }
 

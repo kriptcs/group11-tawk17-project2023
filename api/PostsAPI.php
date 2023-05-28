@@ -8,116 +8,142 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 require_once __DIR__ . "/RestAPI.php";
 require_once __DIR__ . "/../business-logic/PostsService.php";
 
-// Class for handling requests to "api/post"
 
-class PostsAPI extends RestAPI
+class PostAPI extends RestAPI
 {
 
     // Handles the request by calling the appropriate member function
     public function handleRequest()
     {
 
-        
-        // If theres two parts in the path and the request method is GET 
-        // it means that the client is requesting "api/posts" and
-        // we should respond by returning a list of all posts 
+        // GET: /api/posts
         if ($this->method == "GET" && $this->path_count == 2) {
             $this->getAll();
-        } 
+        }
 
-        // If there's three parts in the path and the request method is GET
-        // it means that the client is requesting "api/posts/{something}".
-        // In our API the last part ({something}) should contain the ID of an 
-        // post and we should respond with the post of that ID
+        // GET: /api/posts/{id}
         else if ($this->path_count == 3 && $this->method == "GET") {
             $this->getById($this->path_parts[2]);
         }
 
-        // If theres two parts in the path and the request method is POST 
-        // it means that the client is requesting "api/posts" and we
-        // should get ths contents of the body and create a post.
+        // POST: /api/posts
         else if ($this->path_count == 2 && $this->method == "POST") {
             $this->postOne();
-        } 
+        }
 
-        //Modify by ID
-         else if ($this->path_count == 3 && $this->method == "PUT") {
-            $this->modifyByID($this->path_parts[2]);
-        } 
+        // PUT: /api/posts/{id}
+        else if ($this->path_count == 3 && $this->method == "PUT") {
+            $this->putOne($this->path_parts[2]);
+        }
 
+        // DELETE: /api/posts/{id}
         else if ($this->path_count == 3 && $this->method == "DELETE") {
-            $this->deleteByID($this->path_parts[2]);
-        } 
+            $this->deleteOne($this->path_parts[2]);
+        }
 
-        
         // If none of our ifs are true, we should respond with "not found"
         else {
             $this->notFound();
         }
     }
 
-    // Gets all posts and sends them to the client as JSON
+
     private function getAll()
     {
-        $posts = PostsService::getAllPosts();
+        $this->requireAuth();
+
+        if ($this->user->user_role === "admin") {
+            $posts = PostsService::getAllPosts();
+        } else {
+            $posts = PostsService::getPostsByUser($this->user->user_id);
+        }
 
         $this->sendJson($posts);
     }
 
-    // Gets one and sends it to the client as JSON
+
     private function getById($id)
     {
+        $this->requireAuth();
+
         $post = PostsService::getPostById($id);
 
-        if ($post) {
-            $this->sendJson($post);
-        } else {
+        if (!$post) {
             $this->notFound();
         }
+
+        if ($this->user->user_role !== "admin" || $post->user_id !== $this->user->user_id) {
+            $this->forbidden();
+        }
+
+        $this->sendJson($post);
     }
 
-    // Gets the contents of the body and saves it as an post by 
-    // inserting it in the database.
+
     private function postOne()
     {
+        $this->requireAuth();
+
         $post = new PostModel();
 
-        $post->user_id = $this->body["user_id"];
         $post->content = $this->body["content"];
+
+        // Admins can connect any user to the post
+        if ($this->user->user_role === "admin") {
+            $post->user_id = $this->body["user_id"];
+        }
+
+        // Regular users can only add posts to themself
+        else {
+            $post->user_id = $this->user->user_id;
+        }
+
         $success = PostsService::savePost($post);
 
-        if($success){
+        if ($success) {
             $this->created();
-        }
-        else{
+        } else {
             $this->error();
         }
     }
 
-    private function modifyByID($id) {
+
+    private function putOne($id)
+    {
+        $this->requireAuth(["admin"]);
 
         $post = new PostModel();
 
-        $post->user_id = $this->body["user_id"];
         $post->content = $this->body["content"];
+        $post->user_id = $this->body["user_id"];
 
-        $success = PostsService::modifyPost($id, $post);
-          if($success){
-            $this->modify();
-        }
-        else{
+        $success = PostsService::updatePostById($id, $post);
+
+        if ($success) {
+            $this->ok();
+        } else {
             $this->error();
         }
     }
 
-    private function deleteByID($id) {
-        
-         $post = PostsService::deleteByID($id);
+    // Deletes the post with the specified ID in the DB
+    private function deleteOne($id)
+    {
+        // only admins can delete posts
+        $this->requireAuth(["admin"]);
 
-        if ($post) {
-            $this->delete();
-        } else {
+        $post = PostsService::getPostById($id);
+
+        if ($post == null) {
             $this->notFound();
+        }
+
+        $success = PostsService::deletePostById($id);
+
+        if ($success) {
+            $this->noContent();
+        } else {
+            $this->error();
         }
     }
 }

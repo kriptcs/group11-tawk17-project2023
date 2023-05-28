@@ -6,31 +6,19 @@ Template::header("Articles");
 ?>
 
 <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Tempora nam vitae quos nisi, eius delectus libero quia at, 
-    veritatis ipsa facere obcaecati nihil possimus non, dolorem 
-    molestias temporibus laboriosam totam.
+  Some paragraph 1
 </p>
 
 <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Tempora nam vitae quos nisi, eius delectus libero quia at, 
-    veritatis ipsa facere obcaecati nihil possimus non, dolorem 
-    molestias temporibus laboriosam totam.
+Some other paragraph
 </p>
 
 <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Tempora nam vitae quos nisi, eius delectus libero quia at, 
-    veritatis ipsa facere obcaecati nihil possimus non, dolorem 
-    molestias temporibus laboriosam totam.
+    a third paragraph
 </p>
 
 <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Tempora nam vitae quos nisi, eius delectus libero quia at, 
-    veritatis ipsa facere obcaecati nihil possimus non, dolorem 
-    molestias temporibus laboriosam totam.
+ a last paragraph
 </p>
 
 <?php Template::footer(); ?>

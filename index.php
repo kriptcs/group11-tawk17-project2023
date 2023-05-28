@@ -10,8 +10,8 @@ require_once __DIR__ . "/api/APIRouter.php";
 require_once __DIR__ . "/frontend/FrontendRouter.php";
 
 // Get URL path
-// http://localhost/multitier-shop/[api/purchases/5]
-// http://localhost/multitier-shop/[home/purchases] [PATH]
+// http://localhost/multitier-shop/[api/posts/5]
+// http://localhost/multitier-shop/[home/posts] [PATH]
 $path = $_GET["path"]; 
 
 $path_parts = explode("/", $path);

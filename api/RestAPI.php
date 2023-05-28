@@ -12,7 +12,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 class RestAPI
 {
 
-    protected $path_parts, $path_count, $query_params, $method, $body;
+    protected $path_parts, $path_count, $query_params, $method, $body, $user;
 
     // Gets data from the url and sets the protected properties
     // so that any class inheriting from this can read and handle
@@ -20,7 +20,7 @@ class RestAPI
     public function __construct($path_parts, $query_params)
     {
         
-        // Set the other protected properties
+        // Set the other protected propertiesl
         $this->path_parts = $this->removeEmptyStrings($path_parts);
         $this->query_params = $query_params;
         $this->method = $_SERVER["REQUEST_METHOD"];

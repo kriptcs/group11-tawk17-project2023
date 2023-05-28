@@ -13,6 +13,7 @@ require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/AssetsController.php";
 require_once __DIR__ . "/controllers/ArticleController.php";
 require_once __DIR__ . "/controllers/AuthController.php";
+require_once __DIR__ . "/controllers/PostsController.php";
 
 // Class for routing all our API requests
 
@@ -28,11 +29,11 @@ class FrontendRouter
         // Available routes
         // Add to this if you need to add any route to the API
         $this->routes = [
-            // Whenever someone calls "home/Purchases" we 
-            // will load the PurchasePages class
+            // Whenever someone calls "home/Posts" we 
+            // will load the PostPages class
             "home" => "HomeController",
             "auth" => "AuthController",
-            "purchases" => "PurchaseController",
+            "posts" => "PostController",
             "assets" => "AssetsController",
             "articles" => "ArticleController"
         ];
@@ -54,7 +55,7 @@ class FrontendRouter
         $request_info = [];
 
         if ($this->path_count >= 2 && $this->path_parts[1] != "") {
-            // Get the requested resource from the URL such as "Purchases" or "Users"
+            // Get the requested resource from the URL such as "Posts" or "Users"
             $resource = strtolower($this->path_parts[1]);
         }
 

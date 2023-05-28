@@ -1,14 +1,13 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
 
-Template::header("New Purchase");
+Template::header("New post");
 ?>
 
-<h1>New Purchase</h1>
+<h1>New post</h1>
 
-<form action="<?= $this->home ?>/purchases" method="post">
-    <input type="text" name="product_name" placeholder="Product name"> <br>
-    <input type="number" name="price" placeholder="Price"> <br>
+<form action="<?= $this->home ?>/posts" method="post">
+    <input type="text" name="post_name" placeholder="Post Name"> <br>
 
     <?php if ($this->user->user_role === "admin") : ?>
         <input type="number" name="user_id" placeholder="User ID"> <br>
