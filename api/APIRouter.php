@@ -8,6 +8,8 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 require_once __DIR__ . "/PostsAPI.php";
 require_once __DIR__ . "/UsersAPI.php";
 require_once __DIR__ . "/APIRoot.php";
+require_once __DIR__ . "/AuthAPI.php";
+
 
 // Class for routing all our API requests
 

@@ -9,6 +9,13 @@ require_once __DIR__ . "/../ControllerBase.php";
 require_once __DIR__ . "/../../business-logic/PostsService.php";
 
 
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
 
 class PostController extends ControllerBase
 {
@@ -169,12 +176,17 @@ class PostController extends ControllerBase
     private function createPost()
     {
         $this->requireAuth();
+debug_to_console("Goes past auth 1");
 
         $post = new PostModel();
+
+        debug_to_console("Goes past post model 2");
+
 
         // Get updated properties from the body
         $post->content = $this->body["content"];
 
+        debug_to_console("Goes past content line 3");
 
         // Admins can connect any user to the post
         if($this->user->user_role === "admin"){
@@ -188,6 +200,7 @@ class PostController extends ControllerBase
 
         // Save the post
         $success = PostsService::savePost($post);
+        debug_to_console("Goes past save post 4");
 
         // Redirect or show error based on response from business logic layer
         if ($success) {
