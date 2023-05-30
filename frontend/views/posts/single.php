@@ -1,10 +1,12 @@
 <?php
 require_once __DIR__ . "/../../Template.php";
+$title = "Post Number";
 
 Template::header($this->model["post"]->post_id);
+// This page was created to display a selected resource.
 ?>
 
-<h1><?= $this->model["post"]->post_id ?></h1>
+<h1> Post number <?= $this->model["post"]->post_id ?></h1>
 
 <p>
     <b>Id: </b>
@@ -12,7 +14,7 @@ Template::header($this->model["post"]->post_id);
 </p>
 
 <p>
-    <b>Product name: </b>
+    <b>The post: </b>
     <?= $this->model["post"]->content ?>
 </p>
 

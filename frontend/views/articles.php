@@ -2,23 +2,21 @@
 require_once __DIR__ . "/../Template.php";
 
 Template::header("Articles"); 
-
+//PAGE TO SHOW ALL POSTS OF ALL USERS WITHOUT ADMIN ACCESS. NO ACCESS TO MODIFY THEM THOUGH.
 ?>
+<h1>Post</h1>
+<div class="item-grid">
 
-<p>
-  Some paragraph 1
-</p>
+    <?php foreach ($this->model as $post) : ?>
 
-<p>
-Some other paragraph
-</p>
+        <article class="item">
+            <div>
+                <b><?= $post->content ?></b> <br>
+            </div>
+        </article>
 
-<p>
-    a third paragraph
-</p>
+    <?php endforeach; ?>
 
-<p>
- a last paragraph
-</p>
+</div>
 
 <?php Template::footer(); ?>

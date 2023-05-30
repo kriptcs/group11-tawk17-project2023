@@ -18,7 +18,7 @@ class PostsService{
     }
     
 
-    public static function getAllPost(){
+    public static function getAllPosts(){
         $posts_database = new PostsDatabase();
 
         $posts = $posts_database->getAll();

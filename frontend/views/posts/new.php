@@ -7,7 +7,7 @@ Template::header("New post");
 <h1>New post</h1>
 
 <form action="<?= $this->home ?>/posts" method="post">
-    <input type="text" name="post_name" placeholder="Post Name"> <br>
+    <input type="text" name="content" placeholder="Post Name"> <br>
 
     <?php if ($this->user->user_role === "admin") : ?>
         <input type="number" name="user_id" placeholder="User ID"> <br>

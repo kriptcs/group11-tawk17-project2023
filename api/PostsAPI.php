@@ -9,7 +9,7 @@ require_once __DIR__ . "/RestAPI.php";
 require_once __DIR__ . "/../business-logic/PostsService.php";
 
 
-class PostAPI extends RestAPI
+class PostsAPI extends RestAPI
 {
 
     // Handles the request by calling the appropriate member function
@@ -49,14 +49,14 @@ class PostAPI extends RestAPI
 
 
     private function getAll()
-    {
-        $this->requireAuth();
+    {$posts = PostsService::getAllPosts();
+       /* $this->requireAuth();
 
         if ($this->user->user_role === "admin") {
-            $posts = PostsService::getAllPosts();
+            
         } else {
             $posts = PostsService::getPostsByUser($this->user->user_id);
-        }
+        } */
 
         $this->sendJson($posts);
     }
