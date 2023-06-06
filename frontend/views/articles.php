@@ -13,6 +13,7 @@ Template::header("Articles");
             <div>
                 <b><?= $post->content ?></b> <br>
             </div>
+
         </article>
 
     <?php endforeach; ?>
