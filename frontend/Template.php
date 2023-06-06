@@ -29,6 +29,7 @@ class Template
             <nav>
                 <a href="<?= $home_path ?>">Home</a>
                 <a href="<?= $home_path ?>/articles">Posts</a>
+                <a href="<?= $home_path ?>/meme">Memes</a>
 
                 <?php if ($user) : ?>
                     <a href="<?= $home_path ?>/auth/profile">Profile</a>
