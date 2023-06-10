@@ -28,7 +28,7 @@ class Template
 
             <nav>
                 <a href="<?= $home_path ?>">Home</a>
-                <a href="<?= $home_path ?>/articles">Posts</a>
+                <a href="<?= $home_path ?>/feed">Post Feed</a>
                 <a href="<?= $home_path ?>/meme">Memes</a>
 
                 <?php if ($user) : ?>
@@ -56,7 +56,7 @@ class Template
             ?>
             </main>
             <footer>
-                A random footer
+                Project by Jacob Granstedt, Jiaheng Liu & Mihai Gabriel Bodnarescu 
             </footer>
         </body>
 

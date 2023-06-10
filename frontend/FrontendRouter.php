@@ -11,7 +11,7 @@ require_once __DIR__ . "/functions.php";
 // Load controllers
 require_once __DIR__ . "/controllers/HomeController.php";
 require_once __DIR__ . "/controllers/AssetsController.php";
-require_once __DIR__ . "/controllers/ArticleController.php";
+require_once __DIR__ . "/controllers/FeedController.php";
 require_once __DIR__ . "/controllers/AuthController.php";
 require_once __DIR__ . "/controllers/PostsController.php";
 require_once __DIR__ . "/controllers/MemeController.php";
@@ -37,7 +37,7 @@ class FrontendRouter
             "auth" => "AuthController",
             "posts" => "PostController",
             "assets" => "AssetsController",
-            "articles" => "ArticleController",
+            "feed" => "FeedController",
             "meme" => "MemeController"
 
         ];

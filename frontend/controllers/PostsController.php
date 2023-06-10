@@ -8,7 +8,7 @@ if (!defined('MY_APP') && basename($_SERVER['PHP_SELF']) == basename(__FILE__)) 
 require_once __DIR__ . "/../ControllerBase.php";
 require_once __DIR__ . "/../../business-logic/PostsService.php";
 
-
+//function to perform debugging using the console. Credit https://stackoverflow.com/q/4323411
 function debug_to_console($data) {
     $output = $data;
     if (is_array($output))
@@ -75,6 +75,8 @@ class PostController extends ControllerBase
         $this->model = $posts;
 
         $this->viewPage("posts/index");
+        $this->viewPage("feed");
+
     }
 
 
