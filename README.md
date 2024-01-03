@@ -1,4 +1,4 @@
-# Group 11 - Close Social (name of the app idk)
+# Group 11 - Close Social
 
 # Purpose
 
